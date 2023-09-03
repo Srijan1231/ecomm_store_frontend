@@ -1,8 +1,22 @@
 import "./App.css";
-import { Signup } from "./pages/signin-signup/SignUp";
-
+import { Home } from "./pages/home/Home";
+import { Login } from "./pages/login-register/Login";
+import { Register } from "./pages/login-register/Register";
+import { Route, Routes } from "react-router-dom";
 function App() {
-  return <Signup />;
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        {/* <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} /> */}
+      </Routes>
+    </div>
+  );
 }
 
 export default App;

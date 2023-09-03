@@ -1,84 +1,84 @@
-export const signupData = [
-    {
-        label:"First Name",
-        name: "fName",
+export const registerData = [
+  {
+    label: "First Name",
+    name: "fName",
+    id: "First name",
     required: true,
     placeholder: "Enter your First Name",
+    type: "text",
+    className:
+      "mt-1 w-full rounded-md border-gray-600 bg-white text-sm text-gray-700 shadow-sm ",
+    classNameDiv: "col-span-6 sm:col-span-3",
+  },
+  {
+    label: "Last Name",
+    name: "lName",
+    id: "Last name",
+    required: true,
+    placeholder: "Enter your Last Name",
+    type: "text",
+    className:
+      "mt-1 w-full rounded-md border-gray-600 bg-white text-sm text-gray-700 shadow-sm ",
+    classNameDiv: "col-span-6 sm:col-span-3",
+  },
+  {
+    label: "Email",
+    name: "email",
+    id: "Email",
+    required: true,
+    placeholder: "Enter your Email",
     type: "email",
-    className: "mt-1 w-full rounded-md border-gray-600 bg-white text-sm text-gray-700 shadow-sm ",
-    }
+    className:
+      "mt-1 w-full rounded-md border-gray-600 bg-white text-sm text-gray-700 shadow-sm ",
+    classNameDiv: "col-span-6 ",
+  },
+  {
+    label: "Password",
+    name: "password",
+    id: "Password",
+    required: true,
+    placeholder: "Enter your Password",
+    type: "password",
+    className:
+      "mt-1 w-full rounded-md border-gray-600 bg-white text-sm text-gray-700 shadow-sm ",
+
+    classNameDiv: "col-span-6 sm:col-span-3",
+  },
+  {
+    label: "Confirm Password",
+    name: "confirmpassword",
+    id: "Confirm password",
+    required: true,
+    placeholder: "Enter your Password",
+    type: "password",
+    className:
+      "mt-1 w-full rounded-md border-gray-600 bg-white text-sm text-gray-700 shadow-sm ",
+
+    classNameDiv: "col-span-6 sm:col-span-3",
+  },
 ];
-<label
-                  
+export const loginData = [
+  {
+    label: "Email",
+    name: "email",
+    id: "Email",
+    required: true,
+    placeholder: "Enter your Email",
+    type: "email",
+    className:
+      "mt-1 w-full rounded-md border-gray-600 bg-white text-sm text-gray-700 shadow-sm ",
+    classNameDiv: "col-span-6 ",
+  },
+  {
+    label: "Password",
+    name: "password",
+    id: "Password",
+    required: true,
+    placeholder: "Enter your Password",
+    type: "password",
+    className:
+      "mt-1 w-full rounded-md border-gray-600 bg-white text-sm text-gray-700 shadow-sm ",
 
-                <input
-                  type="text"
-                  id="FirstName"
-                  name="first_name"
-                  className="mt-1 w-full rounded-md border-gray-600 bg-white text-sm text-gray-700 shadow-sm"
-                />
-              </div>
-
-              <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="LastName"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Last Name
-                </label>
-
-                <input
-                  type="text"
-                  id="LastName"
-                  name="last_name"
-                  className="mt-1 w-full rounded-md border-gray-600 bg-white text-sm text-gray-700 shadow-sm"
-                />
-              </div>
-
-              <div className="col-span-6">
-                <label
-                  htmlFor="Email"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Email
-                </label>
-
-                <input
-                  type="email"
-                  id="Email"
-                  name="email"
-                  className="mt-1 w-full rounded-md border-gray-600 bg-white text-sm text-gray-700 shadow-sm"
-                />
-              </div>
-
-              <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="Password"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Password
-                </label>
-
-                <input
-                  type="password"
-                  id="Password"
-                  name="password"
-                  className="mt-1 w-full rounded-md border-gray-600 bg-white text-sm text-gray-700 shadow-sm"
-                />
-              </div>
-
-              <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="PasswordConfirmation"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Password Confirmation
-                </label>
-
-                <input
-                  type="password"
-                  id="PasswordConfirmation"
-                  name="password_confirmation"
-                  className="mt-1 w-full rounded-md border-gray-600 bg-white text-sm text-gray-700 shadow-sm"
-                />
-              </div>
+    classNameDiv: "col-span-6 ",
+  },
+];

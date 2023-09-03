@@ -1,6 +1,6 @@
-export const InputText = ({ label, ...rest }) => {
+export const InputText = ({ label, classNameDiv, ...rest }) => {
   return (
-    <div className="col-span-6 sm:col-span-3">
+    <div className={classNameDiv}>
       <label
         for={label}
         className="block text-sm font-medium text-gray-700"

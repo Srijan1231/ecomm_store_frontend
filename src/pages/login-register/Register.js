@@ -1,6 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../asset/logo.svg";
-export const Signup = () => {
+import { registerData } from "../../util/data";
+import { InputText } from "../../components/shared/InputText";
+import { Link } from "react-router-dom";
+import { postNewAdmin } from "../../util/axiosHelper/axiosHelper";
+
+export const Register = () => {
+  const [form, setForm] = useState("");
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+
+    const { confirmpassword, ...rest } = form;
+
+    if (confirmpassword !== rest.password) {
+      return;
+    }
+
+    postNewAdmin(rest);
+  };
   return (
     <section className="bg-white">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
@@ -11,13 +38,12 @@ export const Signup = () => {
             className="absolute inset-0 h-full w-full object-cover"
           />
         </aside>
-
         <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
           <div className="max-w-xl lg:max-w-3xl">
-            <a className="block text-blue-600" href="/">
+            <Link className="block text-blue-600" to="/">
               <span className="sr-only">Home</span>
               <img src={logo} alt="logo"></img>
-            </a>
+            </Link>
 
             <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
               Welcome to IceStrike 🏔️
@@ -27,8 +53,13 @@ export const Signup = () => {
               Where the Icy Roads Become Your Playground.
             </p>
 
-            <form className="mt-8 grid grid-cols-6 gap-6">
-              <div className="col-span-6 sm:col-span-3"></div>
+            <form
+              className="mt-8 grid grid-cols-6 gap-6"
+              onSubmit={handleOnSubmit}
+            >
+              {registerData?.map((item, i) => (
+                <InputText key={i} {...item} onChange={handleOnChange} />
+              ))}
 
               <div className="col-span-6">
                 <label htmlFor="MarketingAccept" className="flex gap-4">
@@ -45,31 +76,34 @@ export const Signup = () => {
                   </span>
                 </label>
               </div>
-
               <div className="col-span-6">
                 <p className="text-sm text-gray-500">
                   By creating an account, you agree to our
-                  <a href="/" className="text-gray-700 underline">
+                  <Link to="/" className="text-gray-700 underline">
                     terms and conditions
-                  </a>
+                  </Link>
                   and
-                  <a href="/" className="text-gray-700 underline">
+                  <Link to="/" className="text-gray-700 underline">
                     privacy policy
-                  </a>
+                  </Link>
                   .
                 </p>
               </div>
-
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                <button className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
+                <button
+                  type="submit"
+                  className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
+                >
                   Create an account
                 </button>
 
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                   Already have an account?
-                  <a href="/" className="text-gray-700 underline">
-                    Log in
-                  </a>
+                  <span className="font-medium">
+                    <Link to="/login" className="text-gray-700 underline">
+                      Login
+                    </Link>
+                  </span>
                   .
                 </p>
               </div>
