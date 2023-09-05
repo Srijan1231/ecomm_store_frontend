@@ -8,7 +8,7 @@ export const Tab = () => {
   };
   console.log(open);
   return (
-    <div>
+    <div className="pt-3">
       <div className="sm:hidden">
         <label htmlFor="Tab" className="sr-only">
           Tab

@@ -67,3 +67,11 @@ export const postNewAdmin = (data) => {
   console.log(userAPI);
   return axiosProcessor(obj);
 };
+//products
+export const getProducts = (_id) => {
+  const obj = {
+    method: "get",
+    url: _id ? productAPI + "/" + _id : productAPI,
+  };
+  return axiosProcessor(obj);
+};

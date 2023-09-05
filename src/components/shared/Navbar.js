@@ -4,7 +4,7 @@ import logo from "../../asset/logo.svg";
 
 export const Navbar = () => {
   return (
-    <header className="bg-white">
+    <header className="bg-white pt-4">
       <div className="mx-auto my-auto max-w-screen-3xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between ">
           <div className="flex-1 md:flex md:items-center md:gap-12">
@@ -13,13 +13,13 @@ export const Navbar = () => {
               <img src={logo} alt="logo" />
             </Link>
           </div>
-          <div class="relative hidden sm:block">
+          <div class="relative hidden sm:block ">
             <label class="sr-only" for="search">
               Search
             </label>
 
             <input
-              class="h-10 w-full rounded-lg border-none bg-white pe-10 ps-4 text-sm shadow-sm sm:w-56"
+              class="h-10 w-full rounded-lg border border-black bg-white pe-10 ps-4 text-sm shadow-sm sm:w-56"
               id="search"
               type="search"
               placeholder="Search website..."
