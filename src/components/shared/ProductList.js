@@ -2,11 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-export const ProductCard = () => {
+export const ProductList = () => {
   const { product } = useSelector((state) => state.productInfo);
   return (
     <section>
-      <div className="max-w-screen-xl px-2 py-1 mx-auto sm:px-6 sm:py-12 lg:px-1">
+      <div className="max-w-screen-2xl px-2 py-1 mx-auto sm:px-6 sm:py-12 lg:px-1">
         <header className="text-center">
           <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
             All Products
@@ -22,7 +22,10 @@ export const ProductCard = () => {
         <ul className="grid gap-4 mt-8 sm:grid-cols-2 lg:grid-cols-4">
           {product.map((item, i) => (
             <li>
-              <Link to={"/"} className="block overflow-hidden group">
+              <Link
+                to={`/product/${item.slug}/${item._id}`}
+                className="block overflow-hidden group"
+              >
                 <img
                   src={
                     process.env.REACT_APP_ROOTSERVER + item.thumbnail?.slice(6)

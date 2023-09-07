@@ -4,8 +4,8 @@ import { Navbar } from "../../components/shared/Navbar";
 import { Tab } from "../../components/shared/Tab";
 import { Collection } from "../../components/layout/Collection";
 
-import { ProductCard } from "../../components/shared/ProductCard";
 import { Footer } from "../../components/shared/Footer";
+import { ProductList } from "../../components/shared/ProductList";
 
 export const Home = () => {
   return (
@@ -13,7 +13,7 @@ export const Home = () => {
       <Navbar />
       <Tab />
       <Collection />
-      <ProductCard />
+      <ProductList />
       <Footer />
     </>
   );

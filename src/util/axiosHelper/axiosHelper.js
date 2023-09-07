@@ -75,3 +75,18 @@ export const getProducts = (_id) => {
   };
   return axiosProcessor(obj);
 };
+export const getProductsByCategory = (_id) => {
+  const obj = {
+    method: "get",
+    url: productAPI + "/category/" + _id,
+  };
+  return axiosProcessor(obj);
+};
+//category
+export const getCategory = (_id) => {
+  const obj = {
+    method: "get",
+    url: _id ? categoryAPI + "/" + _id : categoryAPI,
+  };
+  return axiosProcessor(obj);
+};
