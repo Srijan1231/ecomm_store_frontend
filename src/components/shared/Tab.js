@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-export const Tab = () => {
-  const [open, setOpen] = useState("home");
+export const Tab = ({ slug, id, title }) => {
+  const { category } = useSelector((state) => state.categoryInfo);
+  const [open, setOpen] = useState("");
 
   const handleOnClick = (name) => {
     setOpen(name);
   };
-
-  const { category } = useSelector((state) => state.categoryInfo);
 
   return (
     <div className="pt-3">
@@ -21,7 +20,15 @@ export const Tab = () => {
         <select id="Tab" className="w-full rounded-md border-gray-200">
           {category.map((item, i) => (
             <option value={item.title}>
-              <Link to={`/category/${item._id}`}>{item.title}</Link>
+              <Link
+                to={`/category/${item.slug}/${item._id}`}
+                className={`${open === `${item.title}`}`}
+                onChange={() => {
+                  handleOnClick(`${item.title}`);
+                }}
+              >
+                {item.title}
+              </Link>
             </option>
           ))}
         </select>

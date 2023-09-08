@@ -5,7 +5,10 @@ import { Login } from "./pages/login-register/Login";
 import { Register } from "./pages/login-register/Register";
 import { Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getProductsAction } from "./action/Product/productAction";
+import {
+  getProductByCategoryAction,
+  getProductsAction,
+} from "./action/Product/productAction";
 import { NotFound404 } from "./pages/notfound/NotFound404";
 import { Product } from "./pages/product/Product";
 import { Cart } from "./pages/cart/Cart";

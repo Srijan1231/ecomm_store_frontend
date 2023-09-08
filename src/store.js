@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import categoryReducer from "./redux/categories/categorySlice";
+
 // import systemReducer from "./system/systemSlice";
 import userReducer from "./redux/user/userSlice";
 import paymentOptionReducer from "./redux/payment-option/paymentOptionSlice";

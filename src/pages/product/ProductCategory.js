@@ -10,153 +10,79 @@ import { Footer } from "../../components/shared/Footer";
 
 export const ProductCategory = () => {
   const { _id } = useParams();
-  console.log(_id);
-  const [categoryDt, setCategoryDt] = useState({});
-  const [productDt, setProductDt] = useState({});
-  console.log(productDt);
-  //   console.log(categoryDt);
+
+  const [categoryDt, setCategoryDt] = useState([]);
+  const [productDt, setProductDt] = useState([]);
+
+  const getProductFromCategory = async () => {
+    const { products } = await getProductsByCategory({ _id });
+
+    setProductDt(products);
+  };
+
+  const getSelectedCategory = async () => {
+    const { category } = await getCategory(_id);
+    setCategoryDt(category);
+  };
   useEffect(() => {
     // (async () => {
     //   const { products } = await getProducts(_id);
     //   products?._id && setForm(products);
     // })();
-
     getSelectedCategory();
     getProductFromCategory();
-  }, []);
+  }, [_id]); //passing _id as dependencies because _id is changing to get product from different category
 
-  const getSelectedCategory = async () => {
-    const { category } = await getCategory(_id);
-    category?._id && setCategoryDt(category);
-  };
-  const getProductFromCategory = async () => {
-    const { product } = await getProductsByCategory(_id);
-    product?._id && setProductDt(product);
-  };
   return (
     <>
       <Navbar />
       <Tab />
       <section>
-        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <div className="mx-auto max-w-screen-3xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
           <header>
             <h2 className="text-xl font-bold text-gray-900 sm:text-3xl">
               {categoryDt.title}
             </h2>
-
-            <p className="mt-4 max-w-md text-gray-500">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque
-              praesentium cumque iure dicta incidunt est ipsam, officia dolor
-              fugit natus?
-            </p>
           </header>
 
           <div className="mt-8">
             <p className="text-sm text-gray-500">
-              Showing <span> 4 </span> of 40
+              Showing <span> {productDt.length} </span> product/s
             </p>
           </div>
 
           <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <li>
-              <Link href="#" className="group block overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                  alt=""
-                  className="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]"
-                />
+            {productDt.map((item, i) => (
+              <li>
+                <Link
+                  to={`/product/${item.slug}/${item._id}`}
+                  className="group block overflow-hidden"
+                >
+                  <img
+                    src={
+                      process.env.REACT_APP_ROOTSERVER +
+                      item.thumbnail?.slice(6)
+                    }
+                    alt=""
+                    className="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]"
+                  />
 
-                <div className="relative bg-white pt-3">
-                  <h3 className="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
-                    Basic Tee
-                  </h3>
+                  <div className="relative bg-white pt-3">
+                    <h3 className="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
+                      {item.name}
+                    </h3>
 
-                  <p className="mt-2">
-                    <span className="sr-only"> Regular Price </span>
+                    <p className="mt-2">
+                      <span className="sr-only"> Regular Price </span>
 
-                    <span className="tracking-wider text-gray-900">
-                      {" "}
-                      £24.00 GBP{" "}
-                    </span>
-                  </p>
-                </div>
-              </Link>
-            </li>
-
-            <li>
-              <Link href="#" className="group block overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                  alt=""
-                  className="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]"
-                />
-
-                <div className="relative bg-white pt-3">
-                  <h3 className="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
-                    Basic Tee
-                  </h3>
-
-                  <p className="mt-2">
-                    <span className="sr-only"> Regular Price </span>
-
-                    <span className="tracking-wider text-gray-900">
-                      {" "}
-                      £24.00 GBP{" "}
-                    </span>
-                  </p>
-                </div>
-              </Link>
-            </li>
-
-            <li>
-              <Link href="#" className="group block overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                  alt=""
-                  className="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]"
-                />
-
-                <div className="relative bg-white pt-3">
-                  <h3 className="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
-                    Basic Tee
-                  </h3>
-
-                  <p className="mt-2">
-                    <span className="sr-only"> Regular Price </span>
-
-                    <span className="tracking-wider text-gray-900">
-                      {" "}
-                      £24.00 GBP{" "}
-                    </span>
-                  </p>
-                </div>
-              </Link>
-            </li>
-
-            <li>
-              <Link href="#" className="group block overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                  alt=""
-                  className="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]"
-                />
-
-                <div className="relative bg-white pt-3">
-                  <h3 className="text-xs text-gray-700 group-hover:underline group-hover:underline-offset-4">
-                    Basic Tee
-                  </h3>
-
-                  <p className="mt-2">
-                    <span className="sr-only"> Regular Price </span>
-
-                    <span className="tracking-wider text-gray-900">
-                      {" "}
-                      £24.00 GBP{" "}
-                    </span>
-                  </p>
-                </div>
-              </Link>
-            </li>
+                      <span className="tracking-wider text-gray-900">
+                        ${item.price}
+                      </span>
+                    </p>
+                  </div>
+                </Link>
+              </li>
+            ))}
           </ul>
 
           <ol className="mt-8 flex justify-center gap-1 text-xs font-medium">
