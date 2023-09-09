@@ -31,7 +31,7 @@ export const Product = () => {
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <img
               alt={productDt.name}
-              className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+              className="object-contain lg:w-1/2 w-full  lg:h-auto h-64 lg:object-cover object-center rounded"
               src={
                 process.env.REACT_APP_ROOTSERVER + productDt.thumbnail?.slice(6)
               }

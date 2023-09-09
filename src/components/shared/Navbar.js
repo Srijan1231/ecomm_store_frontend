@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../asset/logo.svg";
+import cart from "../../asset/shoppingcart.svg";
 
 export const Navbar = () => {
   return (
@@ -46,6 +47,14 @@ export const Navbar = () => {
               </svg>
             </button>
           </div>
+          <Link
+            to={"/cart"}
+            className="block shrink-0 rounded-full bg-white p-2.5 text-gray-600 shadow-sm hover:text-gray-700"
+          >
+            <span className="sr-only">Notifications</span>
+            <img src={cart} alt="cart" />
+          </Link>
+
           <div className="flex items-center gap-12">
             <nav aria-label="Global" className="hidden md:block"></nav>
 
