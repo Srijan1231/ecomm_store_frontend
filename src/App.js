@@ -14,6 +14,7 @@ import { Product } from "./pages/product/Product";
 import { Cart } from "./pages/cart/Cart";
 import { getCategoryAction } from "./action/Category/categoryAction";
 import { ProductCategory } from "./pages/product/ProductCategory";
+import { Toaster } from "react-hot-toast";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -22,6 +23,7 @@ function App() {
   }, [dispatch]);
   return (
     <div>
+      <Toaster position="top-right" reverseOrder={false} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />

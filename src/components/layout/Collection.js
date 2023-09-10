@@ -16,7 +16,10 @@ export const Collection = () => {
 
           <ul className="grid grid-cols-1 gap-4 mt-8 lg:grid-cols-3">
             <li>
-              <Link to="/" className="relative block group">
+              <Link
+                to="category/accessories/64f5d8932efcec3da0b10ad0"
+                className="relative block group"
+              >
                 <img
                   src="https://www.dopesnow.com/images/H1664_04_7KfFnqX.jpg?w=612&dpr=2"
                   alt=""
@@ -34,7 +37,10 @@ export const Collection = () => {
             </li>
 
             <li>
-              <Link to="/" className="relative block group">
+              <Link
+                to="/category/clothing/64f5d8762efcec3da0b10ac6"
+                className="relative block group"
+              >
                 <img
                   src="https://www.dopesnow.com/images/H0858_01_2JOUt1E.jpg?w=450&dpr=2"
                   alt=""
@@ -52,7 +58,10 @@ export const Collection = () => {
             </li>
 
             <li className="lg:col-span-2 lg:col-start-2 lg:row-span-2 lg:row-start-1">
-              <Link to="/" className="relative block group">
+              <Link
+                to="/category/clothing/64f5d8762efcec3da0b10ac6"
+                className="relative block group"
+              >
                 <img
                   src="https://www.dopesnow.com/images/H1276_01_O0dJYyn.jpg?w=525&dpr=2"
                   alt=""
