@@ -3,10 +3,15 @@ import logo from "../../asset/logo.svg";
 import { loginData } from "../../util/data";
 import { InputText } from "../../components/shared/InputText";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  getUserProfileAction,
+  signInUserAction,
+} from "../../action/user/userAction";
 
 export const Login = () => {
   const [form, setForm] = useState("");
-
+  const dispatch = useDispatch();
   const handleOnChange = (e) => {
     const { name, value } = e.target;
 
@@ -16,9 +21,9 @@ export const Login = () => {
     });
   };
 
-  const handleOnSubmit = async (e) => {
+  const handleOnSubmit = (e) => {
+    dispatch(signInUserAction(form));
     e.preventDefault();
-    console.log(form);
   };
   return (
     <section className="bg-white">

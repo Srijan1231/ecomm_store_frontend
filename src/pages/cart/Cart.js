@@ -10,6 +10,15 @@ import { removeCartItem } from "../../action/cart/cartAction";
 export const Cart = () => {
   const dispatch = useDispatch();
   const { cartItem } = useSelector((state) => state.cartInfo);
+  const { user } = useSelector((state) => state.userInfo);
+  let totalQuantity = 0;
+  let priceWithOutVAT = 0;
+  let totalPrice = 0;
+  cartItem.map((item) => (totalQuantity += item.ordqty));
+  cartItem.map((item) => (priceWithOutVAT += item.ordqty * item.price));
+  let vatPrice = (2 / 100) * priceWithOutVAT;
+
+  totalPrice = vatPrice + priceWithOutVAT;
 
   const handleOnRemove = (_id) => {
     console.log(_id);
@@ -97,18 +106,18 @@ export const Cart = () => {
                 <div className="w-screen max-w-lg space-y-4">
                   <dl className="space-y-0.5 text-sm text-gray-700">
                     <div className="flex justify-between">
-                      <dt>VAT</dt>
-                      <dd>£25</dd>
+                      <dt>VAT 2%</dt>
+                      <dd>{vatPrice}</dd>
                     </div>
 
                     <div className="flex justify-between">
-                      <dt>Discount</dt>
-                      <dd>-£20</dd>
+                      <dt>Total items</dt>
+                      <dd>{totalQuantity}</dd>
                     </div>
 
                     <div className="flex justify-between !text-base font-medium">
                       <dt>Total</dt>
-                      <dd>£200</dd>
+                      <dd>${totalPrice}</dd>
                     </div>
                   </dl>
 
@@ -119,15 +128,25 @@ export const Cart = () => {
                       </p>
                     </span>
                   </div>
-
-                  <div className="flex justify-end">
-                    <Link
-                      to={"/"}
-                      className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
-                    >
-                      Checkout
-                    </Link>
-                  </div>
+                  {user._id ? (
+                    <div className="flex justify-end">
+                      <Link
+                        to={"/checkout"}
+                        className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
+                      >
+                        Checkout
+                      </Link>
+                    </div>
+                  ) : (
+                    <div className="flex justify-end">
+                      <Link
+                        to={"/login"}
+                        className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
+                      >
+                        Login
+                      </Link>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

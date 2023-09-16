@@ -3,7 +3,7 @@ import logo from "../../asset/logo.svg";
 import { registerData } from "../../util/data";
 import { InputText } from "../../components/shared/InputText";
 import { Link } from "react-router-dom";
-import { postNewAdmin } from "../../util/axiosHelper/axiosHelper";
+import { postNewUser } from "../../util/axiosHelper/axiosHelper";
 
 export const Register = () => {
   const [form, setForm] = useState("");
@@ -26,7 +26,7 @@ export const Register = () => {
       return;
     }
 
-    postNewAdmin(rest);
+    postNewUser(rest);
   };
   return (
     <section className="bg-white">

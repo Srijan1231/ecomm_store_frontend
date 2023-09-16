@@ -4,7 +4,7 @@ const rootAPI = process.env.REACT_APP_ROOT_API;
 const userAPI = rootAPI + "/user";
 
 const categoryAPI = rootAPI + "/category";
-const paymentOptionAPI = rootAPI + "/payment-option";
+const paymentOptionAPI = rootAPI + "/paymentoption";
 const productAPI = rootAPI + "/product";
 
 const getAccessJWT = () => {
@@ -56,8 +56,15 @@ const axiosProcessor = async ({
     };
   }
 };
-
-export const postNewAdmin = (data) => {
+export const getUserInfo = () => {
+  const obj = {
+    method: "get",
+    url: userAPI,
+    isPrivate: true,
+  };
+  return axiosProcessor(obj);
+};
+export const postNewUser = (data) => {
   const obj = {
     method: "post",
     url: userAPI,
@@ -65,6 +72,14 @@ export const postNewAdmin = (data) => {
   };
   console.log(obj);
   console.log(userAPI);
+  return axiosProcessor(obj);
+};
+export const signInUser = (data) => {
+  const obj = {
+    method: "post",
+    url: userAPI + "/sign-in",
+    obj: data,
+  };
   return axiosProcessor(obj);
 };
 //products
@@ -87,6 +102,14 @@ export const getCategory = (_id) => {
   const obj = {
     method: "get",
     url: _id ? categoryAPI + "/" + _id : categoryAPI,
+  };
+  return axiosProcessor(obj);
+};
+//paymentOptions
+export const getPaymentOption = (_id) => {
+  const obj = {
+    method: "get",
+    url: _id ? paymentOptionAPI + "/" + _id : paymentOptionAPI,
   };
   return axiosProcessor(obj);
 };

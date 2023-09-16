@@ -13,16 +13,22 @@ const cartPersistConfig = {
   key: "cartInfo",
   storage,
 };
+const userPersistConfig = {
+  key: "userInfo",
+  storage,
+};
 
 const persistedCartReducer = persistReducer(cartPersistConfig, cartReducer);
+const persistedUserReducer = persistReducer(userPersistConfig, userReducer);
 const store = configureStore({
   reducer: {
     categoryInfo: categoryReducer,
     // system: systemReducer,
-    userInfo: userReducer,
+    userInfo: persistedUserReducer,
     paymentOptionInfo: paymentOptionReducer,
     productInfo: productReducer,
     cartInfo: persistedCartReducer,
+    paymentOptionInfo: paymentOptionReducer,
   },
 });
 const persister = persistStore(store);

@@ -15,11 +15,15 @@ import { Cart } from "./pages/cart/Cart";
 import { getCategoryAction } from "./action/Category/categoryAction";
 import { ProductCategory } from "./pages/product/ProductCategory";
 import { Toaster } from "react-hot-toast";
+import { Checkout } from "./pages/checkout/Checkout";
+
+import { getPaymentOptionAction } from "./action/paymentOption/paymentOptionAction";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProductsAction());
     dispatch(getCategoryAction());
+    dispatch(getPaymentOptionAction());
   }, [dispatch]);
   return (
     <div>
@@ -31,6 +35,7 @@ function App() {
         <Route path="/product/:slug?/:_id?" element={<Product />} />
         <Route path="/category/:slug?/:_id?" element={<ProductCategory />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
         {/* <Route path="/" element={<Home />} />
         <Route path="/" element={<Home />} />
         <Route path="/" element={<Home />} />
