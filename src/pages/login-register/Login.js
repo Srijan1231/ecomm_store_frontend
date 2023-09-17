@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../asset/logo.svg";
 import { loginData } from "../../util/data";
 import { InputText } from "../../components/shared/InputText";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getUserProfileAction,
   signInUserAction,
@@ -12,6 +12,13 @@ import {
 export const Login = () => {
   const [form, setForm] = useState("");
   const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.userInfo);
+  const pathTo = location.state?.from?.location?.pathname || "/";
+  useEffect(() => {
+    user?._id && navigate(pathTo);
+  }, [user, navigate, pathTo]);
   const handleOnChange = (e) => {
     const { name, value } = e.target;
 

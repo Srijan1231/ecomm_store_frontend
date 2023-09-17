@@ -82,6 +82,14 @@ export const signInUser = (data) => {
   };
   return axiosProcessor(obj);
 };
+export const logoutUser = (data) => {
+  const obj = {
+    method: "post",
+    url: userAPI + "/logout",
+    obj: data,
+  };
+  return axiosProcessor(obj);
+};
 //products
 export const getProducts = (_id) => {
   const obj = {

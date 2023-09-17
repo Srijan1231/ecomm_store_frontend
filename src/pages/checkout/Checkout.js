@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Navbar } from "../../components/shared/Navbar";
 import { useSelector } from "react-redux";
@@ -7,14 +7,26 @@ import { PaymentOpt } from "../../components/shared/PaymentOpt";
 export const Checkout = () => {
   const { cartItem } = useSelector((state) => state.cartInfo);
   const { paymentOption } = useSelector((state) => state.paymentOptionInfo);
+  const [paymentDt, setPaymentDt] = useState([]);
+  console.log(paymentDt);
+  const [checkedDt, setCheckedDt] = useState("");
+  useEffect(() => {
+    setPaymentDt(paymentOption);
+  }, [paymentOption]);
   const [form, setForm] = useState({});
+
   const handleOnChange = (e) => {
+    console.log("asdfhjbajhsdf--");
     const { name, value } = e.target;
 
     setForm({
       ...form,
       [name]: value,
     });
+  };
+  const handleOnChecked = (e) => {
+    const { value } = e.target;
+    setCheckedDt(value);
   };
   console.log(form);
 
@@ -59,20 +71,20 @@ export const Checkout = () => {
 
           <p className="mt-8 text-lg font-medium">Payment Methods</p>
           <form className="mt-5 grid gap-6">
-            {paymentOption.map((item) => (
+            {paymentDt.map((item) => (
               <PaymentOpt
-                id={item.slug}
-                title={item.title}
-                onChange={handleOnChange}
+                item={item}
+                onChecked={handleOnChecked}
+                checkedDt={checkedDt}
               />
             ))}
           </form>
         </div>
 
         <div className="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
-          <p className="text-xl font-medium">Payment Details</p>
+          <p className="text-xl font-medium">User Details</p>
           <p className="text-gray-400">
-            Complete your order by providing your payment details.
+            Complete your order by providing your details.
           </p>
           <div className="">
             <label for="email" className="mt-4 mb-2 block text-sm font-medium">

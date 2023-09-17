@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../asset/logo.svg";
+
 import cart from "../../asset/shoppingcart.svg";
+import { useSelector } from "react-redux";
+import { UserProfile } from "./UserProfile";
 
 export const Navbar = () => {
+  const { user } = useSelector((state) => state.userInfo);
   return (
-    <header className="bg-white pt-4">
+    <header className="bg-white pt-8">
       <div className="mx-auto my-auto max-w-screen-3xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between ">
           <div className="flex-1 md:flex md:items-center md:gap-12">
@@ -51,32 +55,35 @@ export const Navbar = () => {
             to={"/cart"}
             className="block shrink-0 rounded-full bg-white p-2.5 text-gray-600 shadow-sm hover:text-gray-700"
           >
-            <span className="sr-only">Notifications</span>
+            <span className="sr-only">Cart</span>
             <img src={cart} alt="cart" />
           </Link>
 
           <div className="flex items-center gap-12">
             <nav aria-label="Global" className="hidden md:block"></nav>
-
-            <div className="flex items-center gap-4">
-              <div className="flex gap-4">
-                <Link
-                  className="rounded-md border-blue-600 bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow"
-                  to="/login"
-                >
-                  Login
-                </Link>
-
-                <div className="flex gap-4 ">
+            {user._id ? (
+              <UserProfile item={user} />
+            ) : (
+              <div className="flex items-center gap-4">
+                <div className="flex gap-4">
                   <Link
-                    className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-blue-600"
-                    to="/register"
+                    className="rounded-md border-blue-600 bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow"
+                    to="/login"
                   >
-                    Register
+                    Login
                   </Link>
+
+                  <div className="flex gap-4 ">
+                    <Link
+                      className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-blue-600"
+                      to="/register"
+                    >
+                      Register
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
