@@ -33,7 +33,7 @@ const axiosProcessor = async ({
       data: obj,
       headers,
     });
-    console.log(data);
+
     return data;
   } catch (error) {
     if (

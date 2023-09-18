@@ -15,7 +15,9 @@ export const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.userInfo);
+  console.log(location);
   const pathTo = location.state?.from?.location?.pathname || "/";
+  console.log(pathTo);
   useEffect(() => {
     user?._id && navigate(pathTo);
   }, [user, navigate, pathTo]);
