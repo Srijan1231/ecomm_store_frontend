@@ -3,6 +3,7 @@ import {
   getUserInfo,
   postNewUser,
   signInUser,
+  updateUserFav,
 } from "../../util/axiosHelper/axiosHelper";
 import { setUser } from "../../redux/user/userSlice";
 
@@ -45,4 +46,14 @@ export const getUserProfileAction = () => async (dispatch) => {
   if (status === "success") {
     dispatch(setUser(user));
   }
+};
+export const updateUserAction = (obj) => async (dispatch) => {
+  const pendingResp = updateUserFav(obj);
+
+  toast.promise(pendingResp, {
+    loading: "Please await..",
+  });
+  const { status, message } = await pendingResp;
+  toast[status](message);
+  status === "success" && dispatch(getUserProfileAction());
 };

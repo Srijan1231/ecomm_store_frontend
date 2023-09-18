@@ -6,6 +6,7 @@ import userReducer from "./redux/user/userSlice";
 import cartReducer from "./redux/cart/cartSlice";
 import paymentOptionReducer from "./redux/payment-option/paymentOptionSlice";
 import productReducer from "./redux/product/productSlice";
+
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 
@@ -25,7 +26,7 @@ const store = configureStore({
     categoryInfo: categoryReducer,
     // system: systemReducer,
     userInfo: persistedUserReducer,
-    paymentOptionInfo: paymentOptionReducer,
+
     productInfo: productReducer,
     cartInfo: persistedCartReducer,
     paymentOptionInfo: paymentOptionReducer,

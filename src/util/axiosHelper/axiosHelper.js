@@ -82,6 +82,15 @@ export const signInUser = (data) => {
   };
   return axiosProcessor(obj);
 };
+export const updateUserFav = (data) => {
+  const obj = {
+    method: "patch",
+    url: userAPI + "/update/fav",
+    obj: data,
+    isPrivate: true,
+  };
+  return axiosProcessor(obj);
+};
 export const logoutUser = (data) => {
   const obj = {
     method: "post",
