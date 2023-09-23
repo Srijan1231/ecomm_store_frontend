@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../asset/logo.svg";
 import { registerData } from "../../util/data";
 import { InputText } from "../../components/shared/InputText";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { postNewUser } from "../../util/axiosHelper/axiosHelper";
+import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
 
 export const Register = () => {
   const [form, setForm] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { user } = useSelector((state) => state.userInfo);
+  const pathTo = location.state?.from?.location?.pathname || "/";
 
+  useEffect(() => {
+    user?._id && navigate(pathTo);
+  }, [user, navigate, pathTo]);
   const handleOnChange = (e) => {
     const { name, value } = e.target;
 
@@ -23,6 +32,7 @@ export const Register = () => {
     const { confirmpassword, ...rest } = form;
 
     if (confirmpassword !== rest.password) {
+      toast.error("Password must match");
       return;
     }
 

@@ -38,24 +38,27 @@ const axiosProcessor = async ({
   } catch (error) {
     if (
       error?.response?.status === 403 &&
-      error?.response?.data?.message === "jwt expired"
+      error?.response?.data?.message === " jwt expired"
     ) {
-      //1. get new accessJWt
-      const { status, accessJWT } = await getAccessJWT();
-      if (status === "success" && accessJWT) {
+      // 1. get new access Jwt
+      const { status, accessJWT } = await getNewAccessJWT();
+      if (status === "success") {
         sessionStorage.setItem("accessJWT", accessJWT);
+        return axiosProcessor({ method, url, obj, isPrivate, refreshToken });
       }
-
-      //2. continue the request
-
-      return axiosProcessor({ method, url, obj, isPrivate, refreshToken });
+    }
+    if (error?.response?.data?.message === " jwt expired") {
+      console.log("refresh token expired");
+      // logoutUser();
     }
     return {
       status: "error",
       message: error.response ? error?.response?.data?.message : error.message,
+      error,
     };
   }
 };
+
 export const getUserInfo = () => {
   const obj = {
     method: "get",
@@ -70,8 +73,7 @@ export const postNewUser = (data) => {
     url: userAPI,
     obj: data,
   };
-  console.log(obj);
-  console.log(userAPI);
+
   return axiosProcessor(obj);
 };
 export const signInUser = (data) => {
@@ -84,11 +86,12 @@ export const signInUser = (data) => {
 };
 export const updateUserFav = (data) => {
   const obj = {
-    method: "patch",
+    method: "post",
     url: userAPI + "/update/fav",
     obj: data,
     isPrivate: true,
   };
+  console.log(data);
   return axiosProcessor(obj);
 };
 export const logoutUser = (data) => {
@@ -96,6 +99,15 @@ export const logoutUser = (data) => {
     method: "post",
     url: userAPI + "/logout",
     obj: data,
+  };
+  return axiosProcessor(obj);
+};
+export const getNewAccessJWT = () => {
+  const obj = {
+    method: "get",
+    url: userAPI + "/get/access_jwt",
+    isPrivate: true,
+    refreshToken: true,
   };
   return axiosProcessor(obj);
 };

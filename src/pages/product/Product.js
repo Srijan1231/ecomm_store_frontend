@@ -13,6 +13,9 @@ export const Product = () => {
   const { _id } = useParams();
   const { user } = useSelector((state) => state.userInfo);
   console.log(_id);
+  let favProductID = "";
+  user.favouriteProduct.map((item) => (favProductID = item._id));
+  console.log(favProductID);
   const dispatch = useDispatch();
   const [productDt, setProductDt] = useState({});
   console.log(productDt);
@@ -25,7 +28,7 @@ export const Product = () => {
     e.preventDefault();
   };
   const handleOnClickFav = (e) => {
-    dispatch(updateUserAction({ _id: user._id, favourite: _id }));
+    dispatch(updateUserAction({ _id: user._id, favourite: productDt }));
     e.preventDefault();
   };
 
@@ -77,13 +80,21 @@ export const Product = () => {
                     type="submit"
                     onClick={handleOnClickFav}
                   >
-                    <Icon
-                      icon="mdi:heart-outline"
-                      color="red"
-                      width="50"
-                      height="50"
-                    />
-                    <Icon icon="mdi:heart" color="red" width="50" height="50" />
+                    {favProductID === _id ? (
+                      <Icon
+                        icon="mdi:heart"
+                        color="red"
+                        width="50"
+                        height="50"
+                      />
+                    ) : (
+                      <Icon
+                        icon="mdi:heart-outline"
+                        color="red"
+                        width="50"
+                        height="50"
+                      />
+                    )}
                   </button>
                 </div>
               </div>

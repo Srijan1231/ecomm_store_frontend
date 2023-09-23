@@ -7,7 +7,7 @@ import {
 } from "../../util/axiosHelper/axiosHelper";
 import { setUser } from "../../redux/user/userSlice";
 
-export const createNewUserAction = async (obj) => {
+export const createNewUserAction = (obj) => async (dispatch) => {
   const pendingResp = postNewUser(obj);
 
   toast.promise(pendingResp, {
@@ -15,6 +15,9 @@ export const createNewUserAction = async (obj) => {
   });
   const { status, message } = await pendingResp;
   toast[status](message);
+  if (status === "success") {
+    dispatch(getUserProfileAction());
+  }
 };
 
 export const signInUserAction = (obj) => async (dispatch) => {
@@ -25,14 +28,13 @@ export const signInUserAction = (obj) => async (dispatch) => {
   });
   const { status, message, token } = await pendingResp;
 
-  toast[status](message);
-
   if (status === "success") {
     sessionStorage.setItem("accessJWT", token.accessJWT);
     localStorage.setItem("refreshJWT", token.refreshJWT);
 
     dispatch(getUserProfileAction());
   }
+  toast[status](message);
 
   //get the user data and mount in the state
 };
