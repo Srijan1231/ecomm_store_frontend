@@ -8,7 +8,6 @@ export const Tab = ({ slug, id, title }) => {
   const [open, setOpen] = useState("");
 
   const handleOnClick = (name) => {
-    console.log(name);
     setOpen(name);
     navigate(name);
   };

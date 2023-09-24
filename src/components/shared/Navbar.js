@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../asset/logo.svg";
+import fav from "../../asset/fav.svg";
 
-import cart from "../../asset/shoppingcart.svg";
 import { useSelector } from "react-redux";
 import { UserProfile } from "./UserProfile";
 
 export const Navbar = () => {
   const { user } = useSelector((state) => state.userInfo);
+  const { cartItem } = useSelector((state) => state.cartInfo);
   return (
     <header className="bg-white pt-8">
       <div className="mx-auto my-auto max-w-screen-3xl px-4 sm:px-6 lg:px-8">
@@ -53,10 +54,41 @@ export const Navbar = () => {
           </div>
           <Link
             to={"/cart"}
-            className="block shrink-0 rounded-full bg-white p-2.5 text-gray-600 shadow-sm hover:text-gray-700"
+            className="py-4 px-1 relative border-2 border-transparent text-gray-800 rounded-full hover:text-gray-400 focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out"
           >
             <span className="sr-only">Cart</span>
-            <img src={cart} alt="cart" />
+            <div className="flex">
+              <svg
+                class="h-6 w-6"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+              <span class="absolute inset-0 object-right-top -mr-6">
+                <div class="inline-flex items-center px-1.5 py-0.5 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-red-500 text-white">
+                  {cartItem.length}
+                </div>
+              </span>
+            </div>
+          </Link>
+          <Link
+            to={"/cart"}
+            className="py-4 px-1 relative border-2 border-transparent text-gray-800 rounded-full hover:text-gray-400 focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out"
+          >
+            <span className="sr-only">Fav</span>
+            <div className="flex">
+              <img src={fav} alt="fav" />
+              <span class="absolute inset-0 object-right-top -mr-6">
+                <div class="inline-flex items-center px-1.5 py-0.5 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-red-500 text-white">
+                  {user.favouriteProduct.length}
+                </div>
+              </span>
+            </div>
           </Link>
 
           <div className="flex items-center gap-12">

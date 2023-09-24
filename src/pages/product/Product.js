@@ -12,13 +12,12 @@ import { updateUserAction } from "../../action/user/userAction";
 export const Product = () => {
   const { _id } = useParams();
   const { user } = useSelector((state) => state.userInfo);
-  console.log(_id);
+
   let favProductID = "";
-  user.favouriteProduct.map((item) => (favProductID = item._id));
-  console.log(favProductID);
+  user.favouriteProduct?.map((item) => (favProductID = item._id));
+
   const dispatch = useDispatch();
   const [productDt, setProductDt] = useState({});
-  console.log(productDt);
 
   useEffect(() => {
     getSelectedProduct();

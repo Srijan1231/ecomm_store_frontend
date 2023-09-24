@@ -6,6 +6,7 @@ const userAPI = rootAPI + "/user";
 const categoryAPI = rootAPI + "/category";
 const paymentOptionAPI = rootAPI + "/paymentoption";
 const productAPI = rootAPI + "/product";
+const orderAPI = rootAPI + "/order";
 
 const getAccessJWT = () => {
   return sessionStorage.getItem("accessJWT");
@@ -38,16 +39,16 @@ const axiosProcessor = async ({
   } catch (error) {
     if (
       error?.response?.status === 403 &&
-      error?.response?.data?.message === " jwt expired"
+      error?.response?.data?.message === "jwt expired"
     ) {
       // 1. get new access Jwt
       const { status, accessJWT } = await getNewAccessJWT();
-      if (status === "success") {
+      if (status === "success" && accessJWT) {
         sessionStorage.setItem("accessJWT", accessJWT);
         return axiosProcessor({ method, url, obj, isPrivate, refreshToken });
       }
     }
-    if (error?.response?.data?.message === " jwt expired") {
+    if (error?.response?.data?.message === "jwt expired") {
       console.log("refresh token expired");
       // logoutUser();
     }
@@ -91,7 +92,7 @@ export const updateUserFav = (data) => {
     obj: data,
     isPrivate: true,
   };
-  console.log(data);
+
   return axiosProcessor(obj);
 };
 export const logoutUser = (data) => {
@@ -139,6 +140,16 @@ export const getPaymentOption = (_id) => {
   const obj = {
     method: "get",
     url: _id ? paymentOptionAPI + "/" + _id : paymentOptionAPI,
+  };
+  return axiosProcessor(obj);
+};
+//orders
+export const postOrder = (data) => {
+  const obj = {
+    method: "post",
+    url: orderAPI,
+    obj: data,
+    isPrivate: true,
   };
   return axiosProcessor(obj);
 };

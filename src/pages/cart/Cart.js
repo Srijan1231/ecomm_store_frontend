@@ -22,7 +22,6 @@ export const Cart = () => {
   totalPrice = vatPrice + priceWithOutVAT;
 
   const handleOnRemove = (_id) => {
-    console.log(_id);
     dispatch(removeCartItem(_id));
   };
 

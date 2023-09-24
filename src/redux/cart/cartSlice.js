@@ -13,7 +13,6 @@ const cartSlice = createSlice(
           (item) => item._id === payload._id
         );
 
-        console.log(!isThisanewitem);
         if (!isThisanewitem) {
           state.cartItem.push(payload);
 
@@ -23,8 +22,7 @@ const cartSlice = createSlice(
             (item) => item._id === payload._id
           );
           payload.ordqty += state.cartItem[indexOfItemToBeReplaced].ordqty;
-          console.log(indexOfItemToBeReplaced);
-          console.log(payload);
+
           // replace item from cart and with new paylaod
           state.cartItem.splice(indexOfItemToBeReplaced, 1);
           state.cartItem.push(payload);
@@ -35,11 +33,9 @@ const cartSlice = createSlice(
         //push coming product to cart
       },
       removeFromCart(state, { payload }) {
-        console.log(payload);
         state.cartItem = state.cartItem.filter((item) => item._id !== payload);
       },
       updateQTYMan(state, { payload }) {
-        console.log(payload);
         state.cartItem = state.cartItem.map((item) => item.ordqty);
       },
     },
