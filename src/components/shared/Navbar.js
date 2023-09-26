@@ -82,7 +82,7 @@ export const Navbar = () => {
           >
             <span className="sr-only">Fav</span>
             <div className="flex">
-              <img src={fav} alt="fav" />
+              <img src={fav} alt="fav" className="w-2/5" />
               {user.favouriteProduct?.length && (
                 <span class="absolute inset-0 object-right-top -mr-6">
                   <div class="inline-flex items-center px-1.5 py-0.5 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-red-500 text-white">

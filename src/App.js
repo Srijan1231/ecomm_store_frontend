@@ -19,6 +19,7 @@ import { Checkout } from "./pages/checkout/Checkout";
 
 import { getPaymentOptionAction } from "./action/paymentOption/paymentOptionAction";
 import { PrivateRoute } from "./pages/privateroute/PrivateRoute";
+
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -44,6 +45,7 @@ function App() {
             </PrivateRoute>
           }
         />
+
         {/* <Route path="/" element={<Home />} />
         <Route path="/" element={<Home />} />
         <Route path="/" element={<Home />} />

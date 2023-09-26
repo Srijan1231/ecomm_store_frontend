@@ -82,3 +82,71 @@ export const loginData = [
     classNameDiv: "col-span-6 ",
   },
 ];
+export const checkOutData = [
+  {
+    label: "First Name",
+    name: "fName",
+    id: "fName",
+    required: true,
+    placeholder: "Enter your First Name",
+    type: "text",
+    className:
+      "w-full rounded-md border border-gray-200 px-4 py-3  text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500",
+    classNameDiv: "relative",
+  },
+  {
+    label: "Last Name",
+    name: "lName",
+    id: "lName",
+    required: true,
+    placeholder: "Enter your Last Name",
+    type: "text",
+    className:
+      "w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500",
+    classNameDiv: "relative",
+  },
+  {
+    label: "Email",
+    name: "email",
+    id: "Email",
+    required: true,
+    placeholder: "Enter your Email",
+    type: "email",
+    className:
+      "w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500",
+    classNameDiv: "relative",
+  },
+  {
+    label: "Phone number",
+    name: "phNumber",
+    id: "phNumber",
+    required: true,
+    placeholder: "Enter your Ph. Number",
+    type: "text",
+    className:
+      "w-full rounded-md border border-gray-200 px-4 py-3  text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500",
+    classNameDiv: "relative",
+  },
+  {
+    label: "Billing Address",
+    name: "address",
+    id: "address",
+    required: true,
+    placeholder: "Enter your Billing Address",
+    type: "text",
+    className:
+      "w-full rounded-md border border-gray-200 px-4 py-3  text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500",
+    classNameDiv: "relative",
+  },
+  {
+    label: "Shipping Address",
+    name: "shippingaddress",
+    id: "shippingaddress",
+    required: true,
+    placeholder: "Enter your Shipping Address",
+    type: "text",
+    className:
+      "w-full rounded-md border border-gray-200 px-4 py-3  text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500",
+    classNameDiv: "relative p-2",
+  },
+];
