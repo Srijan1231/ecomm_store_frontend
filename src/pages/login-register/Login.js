@@ -66,7 +66,14 @@ export const Login = () => {
                 <InputText key={i} {...item} onChange={handleOnChange} />
               ))}
 
-              <div className="col-span-6"></div>
+              <div className="col-span-6">
+                Test User:
+                <hr />
+                username:a@a.com <br />
+                <hr />
+                password:password
+                <hr />
+              </div>
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
                 <button
                   type="submit"
