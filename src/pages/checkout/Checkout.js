@@ -1,13 +1,13 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+// import { Link } from "react-router-dom";
 import { Navbar } from "../../components/shared/Navbar";
 import { useSelector } from "react-redux";
 import { CheckOutList } from "../../components/shared/CheckOutList";
 
-import { postOrder } from "../../util/axiosHelper/axiosHelper";
+// import { postOrder } from "../../util/axiosHelper/axiosHelper";
 import { InputText } from "../../components/shared/InputText";
 import { checkOutData } from "../../util/data";
-import { setOrders } from "../../redux/order/orderSlice";
+// import { setOrders } from "../../redux/order/orderSlice";
 import { CheckOutStripe } from "./CheckOutStripe";
 
 export const Checkout = () => {
