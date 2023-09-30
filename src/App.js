@@ -47,22 +47,8 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route
-          path="/checkout/stripe"
-          element={
-            <PrivateRoute>
-              <CheckOutStripe />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/completion"
-          element={
-            <PrivateRoute>
-              <CheckOutCompletion />
-            </PrivateRoute>
-          }
-        />
+
+        <Route path="/checkout/completion" element={<CheckOutCompletion />} />
 
         {/* <Route path="/" element={<Home />} />
         <Route path="/" element={<Home />} />
