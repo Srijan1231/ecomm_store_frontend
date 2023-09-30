@@ -19,6 +19,8 @@ import { Checkout } from "./pages/checkout/Checkout";
 
 import { getPaymentOptionAction } from "./action/paymentOption/paymentOptionAction";
 import { PrivateRoute } from "./pages/privateroute/PrivateRoute";
+import { CheckOutCompletion } from "./pages/checkout/CheckOutCompletion";
+import { CheckOutStripe } from "./pages/checkout/CheckOutStripe";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +44,22 @@ function App() {
           element={
             <PrivateRoute>
               <Checkout />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/checkout/stripe"
+          element={
+            <PrivateRoute>
+              <CheckOutStripe />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/completion"
+          element={
+            <PrivateRoute>
+              <CheckOutCompletion />
             </PrivateRoute>
           }
         />
