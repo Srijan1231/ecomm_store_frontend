@@ -4,7 +4,9 @@ import {
   useElements,
   PaymentElement,
 } from "@stripe/react-stripe-js";
-import { postOrder } from "../../util/axiosHelper/axiosHelper";
+
+import { postOrderItem } from "../../action/order/orderAction";
+import { removeFromCart } from "../../redux/cart/cartSlice";
 
 const CheckOutForm = ({ obj }) => {
   const stripe = useStripe();
@@ -17,7 +19,7 @@ const CheckOutForm = ({ obj }) => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    postOrder(obj);
+    postOrderItem(obj);
 
     if (!stripe || !elements) {
       return;
@@ -26,6 +28,7 @@ const CheckOutForm = ({ obj }) => {
 
     const { error } = await stripe.confirmPayment({
       elements,
+
       confirmParams: {
         return_url: `${window.location.origin}/checkout/completion`,
       },
@@ -34,6 +37,7 @@ const CheckOutForm = ({ obj }) => {
     if (error) {
       setMessage(error.message);
     }
+
     setIsProcessing(false);
   };
 

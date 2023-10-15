@@ -12,7 +12,6 @@ import { CheckOutStripe } from "./CheckOutStripe";
 
 export const Checkout = () => {
   const { cartItem } = useSelector((state) => state.cartInfo);
-  const { paymentOption } = useSelector((state) => state.paymentOptionInfo);
   const { user } = useSelector((state) => state.userInfo);
 
   const [userForm, setUserForm] = useState({
@@ -38,24 +37,14 @@ export const Checkout = () => {
     orderItem: cartItem,
     paymentStatus: checkedDt,
   };
-
-  useEffect(() => {
-    setUserForm({ ...user, ...userForm });
-  }, [paymentOption, user]);
-
+  console.log(obj);
   // const [paymentDt, setPaymentDt] = useState([]);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
 
-    setUserForm({ ...userForm, [name]: value });
+    setUserForm({ ...userForm, [name]: value, _id: user._id });
   };
-
-  // const handleOnChecked = (e) => {
-  //   const { name, value } = e.target;
-
-  //   setCheckedDt({ ...checkedDt, [name]: value });
-  // };
 
   return (
     <div>
@@ -69,7 +58,7 @@ export const Checkout = () => {
             Complete your order by providing your details.
           </p>
           {checkOutData.map((item) => (
-            <InputText {...item} onChange={handleOnChange} />
+            <InputText {...item} key={item._id} onChange={handleOnChange} />
           ))}
           <div className="mt-6 border-t border-b py-2">
             <div className="flex items-center justify-between">
@@ -109,7 +98,7 @@ export const Checkout = () => {
 
           <div className="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
             {cartItem.map((item) => (
-              <CheckOutList item={item} />
+              <CheckOutList key={item._id} item={item} />
             ))}
           </div>
 

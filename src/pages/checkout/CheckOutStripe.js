@@ -16,6 +16,7 @@ export const CheckOutStripe = ({ obj }) => {
   useEffect(() => {
     callBack();
   }, []);
+  console.log(obj);
   const callBack = () => {
     axios
       .post(callBackAPI, obj)
@@ -30,7 +31,7 @@ export const CheckOutStripe = ({ obj }) => {
     <>
       {stripePromise && clientSecretDt && (
         <Elements options={options} stripe={stripePromise}>
-          <CheckOutForm />
+          <CheckOutForm obj={obj} />
         </Elements>
       )}
     </>

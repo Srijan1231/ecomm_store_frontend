@@ -21,6 +21,7 @@ import { getPaymentOptionAction } from "./action/paymentOption/paymentOptionActi
 import { PrivateRoute } from "./pages/privateroute/PrivateRoute";
 import { CheckOutCompletion } from "./pages/checkout/CheckOutCompletion";
 import { CheckOutStripe } from "./pages/checkout/CheckOutStripe";
+import { Fav } from "./pages/Favourite/Fav";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ function App() {
         <Route path="/product/:slug?/:_id?" element={<Product />} />
         <Route path="/category/:slug?/:_id?" element={<ProductCategory />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/fav" element={<Fav />} />
         <Route
           path="/checkout"
           element={
