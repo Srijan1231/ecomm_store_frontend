@@ -20,7 +20,7 @@ export const Product = () => {
   const [productDt, setProductDt] = useState({});
 
   useEffect(() => {
-    getSelectedProduct();
+     getSelectedProduct();
   }, [_id]);
   const handleOnClickCart = (e) => {
     dispatch(postCartItem({ ...productDt, ordqty: 1 }));
